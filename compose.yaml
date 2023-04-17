@@ -1,8 +1,17 @@
 version: "3.1"
 services:
   frontend:
-    build: ./app
+    build: app
     image: answer_host
     ports: 
       - "8000:8000"
+    networks: 
+      - backnet
+  redis:
+    image: redis:alpine
+    networks:
+      - backnet    
+networks:
+  backnet:
+    driver: overlay
 
